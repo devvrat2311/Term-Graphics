@@ -3,8 +3,11 @@
 
 #include "grid.h"
 
+class Game {
+private:
+    bool isRunning;
+};
 
-void funct(Coord C);
 
 #endif
     

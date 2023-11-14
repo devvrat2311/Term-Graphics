@@ -3,6 +3,9 @@
 
 #include<vector>
 #include<map>
+#include<math.h>
+
+float dist(int a, int b);
 
 class Coord{
 public:
@@ -10,10 +13,10 @@ public:
     int y;
     Coord();
     Coord(int x, int y);
-    bool operator==(Coord c1);
 };
 
-
+bool operator==(Coord c1, Coord c2);
+bool operator<(Coord c1, Coord c2);
 
 
 class Board {

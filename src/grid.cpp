@@ -1,6 +1,10 @@
 #include "grid.h"
 #include<iostream>
 
+//a dist function to calculate the euclidian dist between two points
+float dist(int a, int b){
+    return sqrt(pow(a,2) + pow(b,2));
+}
 //Start of member functions of the Coordinate(Coord) class
 
 //Constructors for Coord
@@ -14,11 +18,12 @@ Coord::Coord(int x, int y){
 }
 
 //Operator '==' to check equality between two Coordinates
-bool Coord::operator==(Coord c){
-    if(this->x == c.x and this->y == c.y)
-        return true;
-    else
-        return false;
+bool operator<(Coord c1, Coord c2){
+    return (dist(c1.x, c2.y) < dist(c2.x, c2.y));
+}
+
+bool operator==(Coord c1, Coord c2){
+    return (c1.x == c2.x && c1.y == c2.y);
 }
 
 
@@ -47,6 +52,7 @@ Board::Board(int x, int y)
 }
 
 //draws the board's base skeleton values
+//I will not delete this function until i get the rendering in the Game class right
 void Board::drawBoard() {
     Coord origin;
     for(int i = 0; i < Yaxis; i++){

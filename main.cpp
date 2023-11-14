@@ -8,8 +8,11 @@ int main() {
 
 
 
-    Board b1(87, 29);
-    b1.drawBoard();
+    // Board b1(87, 29);
+    // b1.drawBoard();
+
+    Game game;
+    game.display();
 
 
 

@@ -49,12 +49,15 @@ Board::Board(int x, int y)
 void Board::renderInitialSetup() {
     for(int i = 0; i < Yaxis; i++){
         for(int j = 0; j < Xaxis; j++){
+            //setting the border characters
             if ( Ylimit == abs(boardY(i)) || Xlimit == abs(boardX(j)) ){
                 board[i][j] = '+';
             }
+            //setting 'o' as the char to represent origin
             else if ( 0 == boardY(i) and 0 == boardX(j)){
                 board[i][j] = 'o';
             }
+            //using '.' for background since i will implement objects inside the board later on
             else{
                 board[i][j] = '.';
             }

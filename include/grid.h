@@ -33,6 +33,8 @@ int boardY(int );
 
 void drawBoard();
 void renderInitialSetup();
+bool setBorders(int,int);
+bool setOrigin (int,int);
 
 };
 

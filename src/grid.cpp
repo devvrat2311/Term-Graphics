@@ -27,9 +27,9 @@ Board::Board(){
     Yaxis = 33;
     Xlimit = Xaxis/2;
     Ylimit = Yaxis/2;
-    this->board.resize(Yaxis, std::vector<char>(Xaxis));
+    board.resize(Yaxis, std::vector<char>(Xaxis));
 
-    this->renderInitialSetup();
+    renderInitialSetup();
 }
 
 
@@ -41,23 +41,18 @@ Board::Board(int x, int y)
     Yaxis = y;
     Xlimit = Xaxis/2;
     Ylimit = Yaxis/2;
-    this->board.resize(Yaxis, std::vector<char>(Xaxis));
+    board.resize(Yaxis, std::vector<char>(Xaxis));
 
-    this->renderInitialSetup();
+    renderInitialSetup();
 }
 
 void Board::renderInitialSetup() {
     for(int i = 0; i < Yaxis; i++){
         for(int j = 0; j < Xaxis; j++){
             //setting the border characters
-            if ( Ylimit == abs(boardY(i)) || Xlimit == abs(boardX(j)) ){
-                board[i][j] = '+';
+            if(setBorders(i,j) || setOrigin(i,j)){
+                continue;
             }
-            //setting 'o' as the char to represent origin
-            else if ( 0 == boardY(i) and 0 == boardX(j)){
-                board[i][j] = 'o';
-            }
-            //using '.' for background since i will implement objects inside the board later on
             else{
                 board[i][j] = '.';
             }
@@ -66,16 +61,33 @@ void Board::renderInitialSetup() {
     }
 }
 
+bool Board::setBorders(int i, int j) {
+    if ( Ylimit == abs(boardY(i)) || Xlimit == abs(boardX(j)) ){
+        board[i][j] = '#';
+        return 1;
+    }
+    else return 0;
+}
+
+bool Board::setOrigin(int i, int j){
+    if( (boardY(i) == 0 and boardX(j) == 0) and !setBorders(i,j) ){
+        board[i][j] = '*';
+        return 1;
+    }
+    else return 0;
+}
+
 int Board::boardY(int a){
     return Ylimit - a;
 }
 int Board::boardX(int a){
-    return Xlimit - a;
+    return a - Xlimit;
 }
 
 void Board::drawBoard() {
     std::cout << "X limit is: " << Xlimit << '\n';
     std::cout << "Y limit is: " << Ylimit << '\n';
+    
     for(int i = 0; i < Yaxis; i++){
         for(int j = 0; j < Xaxis; j++){
             std::cout << board[i][j];

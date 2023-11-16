@@ -1,10 +1,6 @@
 #include "grid.h"
 #include<iostream>
 
-//a dist function to calculate the euclidian dist between two points
-float dist(int a, int b){
-    return sqrt(pow(a,2) + pow(b,2));
-}
 //Start of member functions of the Coordinate(Coord) class
 
 //Constructors for Coord
@@ -17,91 +13,73 @@ Coord::Coord(int x, int y){
     this -> y = y;
 }
 
-//Methods for getting and setting the private variable x, y
-int Coord::getx(){
-    return this->x;
-}
-
-int Coord::gety(){
-    return this->y;
-}
-
-void Coord::setx(int x){
-    this->x = x;
-}
-
-void Coord::sety(int y){
-    this->y = y;
-}
-
-
-//Operator '==' to check equality between two Coordinates
-bool operator<(Coord c1, Coord c2){
-    return (dist(c1.getx(), c2.gety()) < dist(c2.getx(), c2.gety()));
-}
-
-//Operator '<' which is required for making a map out of this object
-bool operator==(Coord c1, Coord c2){
-    return (c1.getx() == c2.getx() && c1.gety() == c2.gety());
-}
-
 
 //End of member functions of the Coordinate(Coord) class
 
+//Starting of Board member functions and constructor
 
-//Start of member functions of the Game Board(Board) class
+
+
 
 //Constructor function for the board
+Board::Board(){
+    Xaxis = 97;
+    Yaxis = 33;
+    Xlimit = Xaxis/2;
+    Ylimit = Yaxis/2;
+    this->board.resize(Yaxis, std::vector<char>(Xaxis));
+
+    this->renderInitialSetup();
+}
+
+
+
+
 Board::Board(int x, int y)
 {
     Xaxis = x;
     Yaxis = y;
-    this->board.resize(Yaxis, std::vector<int>(Xaxis));
+    Xlimit = Xaxis/2;
+    Ylimit = Yaxis/2;
+    this->board.resize(Yaxis, std::vector<char>(Xaxis));
 
-    std::cout << "initializing the board now. . . beep beep boop ... your mom is gay" << "\n";
+    this->renderInitialSetup();
+}
+
+void Board::renderInitialSetup() {
     for(int i = 0; i < Yaxis; i++){
         for(int j = 0; j < Xaxis; j++){
-
+            if ( Ylimit == abs(boardY(i)) || Xlimit == abs(boardX(j)) ){
+                board[i][j] = '+';
+            }
+            else if ( 0 == boardY(i) and 0 == boardX(j)){
+                board[i][j] = 'o';
+            }
+            else{
+                board[i][j] = '.';
+            }
 
         }
     }
 }
 
-int Board::getWidth() {
-    return this->Xaxis;
+int Board::boardY(int a){
+    return Ylimit - a;
+}
+int Board::boardX(int a){
+    return Xlimit - a;
 }
 
-int Board::getHeight() {
-    return this->Yaxis;
+void Board::drawBoard() {
+    std::cout << "X limit is: " << Xlimit << '\n';
+    std::cout << "Y limit is: " << Ylimit << '\n';
+    for(int i = 0; i < Yaxis; i++){
+        for(int j = 0; j < Xaxis; j++){
+            std::cout << board[i][j];
+        }
+        std::cout << '\n';
+    }
 }
-
-//draws the board's base skeleton values
-//I will not delete this function until i get the rendering in the Game class right
-// void Board::drawBoard() {
-//     Coord origin;
-//     for(int i = 0; i < Yaxis; i++){
-//         for(int j = 0; j < Xaxis; j++){
-//             // std::cout << board[i][j].x << board[i][j].y << "  ";
-//             if(board[i][j].x == 0 and  board[i][j].y!= 0){
-//                 std::cout << "|";
-//             }
-
-//             else if(board[i][j].x != 0 and  board[i][j].y== 0){
-//                 std::cout << '-' ;
-//             }
-
-//             else if(board[i][j] == origin){
-//                 std::cout << 'o' ;
-//             }
-
-//             // negative y axis is colored
-//             else{
-//                 std::cout << ' ' ;
-//             }
-//         }
-//         std::cout << std::endl;
-//     }
-// }
 
 
 //End of member functions of the Game Board(Board) class

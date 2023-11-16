@@ -5,39 +5,34 @@
 #include<map>
 #include<math.h>
 
-float dist(int a, int b);
 
 class Coord{
-private:
+public:
     int x;
     int y;
-public:
     Coord();
     Coord(int x, int y);
-    int getx();
-    int gety();
-    void setx(int);
-    void sety(int);
 };
 
-bool operator==(Coord c1, Coord c2);
-bool operator<(Coord c1, Coord c2);
-
-
 class Board {
-
-private:
+public:
 
 int Xaxis;
 int Yaxis;
-std::vector< std::vector<int> > board;
 
-public:
+int Xlimit; 
+int Ylimit; 
 
+std::vector< std::vector<char>> board;
+
+Board();
 Board(int x, int y);
+
+int boardX(int );
+int boardY(int );
+
 void drawBoard();
-int getHeight();
-int getWidth();
+void renderInitialSetup();
 
 };
 

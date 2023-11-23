@@ -6,10 +6,9 @@
 
 class Game {
 public:
-    Board gameBoard;
-    Game(); 
-
-    void display();
+    Board gameBoard; //initializes the gameBoard used for the Game instance
+    Game(); //constructor for the gameBoard  
+    void display(); //calls functions from the gameBoard to finally display the game
 
 };
 

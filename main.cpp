@@ -4,8 +4,22 @@
 
 int main() {
     Game game;
+		int a = 10;
 
     game.display();
 
     return 0;
+		
 }
+
+
+
+
+
+
+
+
+
+
+
+

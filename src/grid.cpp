@@ -27,8 +27,6 @@ Board::Board(){
 }
 
 
-
-
 Board::Board(int x, int y)
 {
     count = 0;
@@ -68,9 +66,7 @@ bool Board::setBorders(int i, int j) {
         board[i][j] = '#';
         return 1;
     }
-    else {
-        return 0;
-    }
+		return 0;
 }
 
 bool Board::setOrigin(int i, int j){
@@ -84,9 +80,11 @@ bool Board::setOrigin(int i, int j){
 }
 
 bool Board::setAxis(int i, int j) {
-	setCharAt(i,j,'|',0,boardY(i));
-	setCharAt(i,j,'-',boardX(j),0);
 	setCharAt(i,j,'o',0,0);
+	if(boardY(i)!=0)
+		setCharAt(i,j,'|',0,boardY(i));
+	if(boardX(j)!=0)
+		setCharAt(i,j,'-',boardX(j),0);
 	
 	return 0;
 }

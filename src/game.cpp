@@ -2,7 +2,7 @@
 #include<iostream>
 
 
-Game::Game() : gameBoard(37,17)
+Game::Game() : gameBoard()
 {
     std::cout << "gameboard initialized. . . beep boop" << '\n';
 }

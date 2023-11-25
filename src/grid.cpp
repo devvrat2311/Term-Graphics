@@ -17,17 +17,7 @@ Coord::Coord(int x, int y){
 //Starting of Board member functions and constructor
 
 
-Board::Board(){
-    count = 0;
-    Xaxis = 97;
-    Yaxis = 33;
-    Xlimit = Xaxis/2;
-    Ylimit = Yaxis/2;
-    board.resize(Yaxis, std::vector<char>(Xaxis));
-}
-
-
-Board::Board(int x, int y)
+Board::Board(int x , int y )
 {
     count = 0;
     Xaxis = x;
@@ -38,12 +28,6 @@ Board::Board(int x, int y)
 
 }
 
-void Board::callRender(int i,int j, bool& flag) {
-    board[i][j] = ' ';
-		//setOrigin(i,j);
-		setAxis(i,j);
-		setBorders(i,j);
-}
 
 
 
@@ -67,16 +51,6 @@ bool Board::setBorders(int i, int j) {
         return 1;
     }
 		return 0;
-}
-
-bool Board::setOrigin(int i, int j){
-    if( boardY(i) == 0 or boardX(j) == 0 ){
-        board[i][j] = 'o';
-        return 1;
-    }
-    else{
-        return 0;
-    } 
 }
 
 bool Board::setAxis(int i, int j) {
@@ -119,7 +93,7 @@ void Board::drawBoard() {
     
     for(int i = 0; i < Yaxis; i++){
         for(int j = 0; j < Xaxis; j++){
-            std::cout << board[i][j] << ' ';
+            std::cout << board[i][j];
         }
         std::cout << '\n';
     }

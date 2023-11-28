@@ -1,10 +1,13 @@
+cleanup: build
+	rm *.o
+
 build: board.o
-	g++ -I./include  -lncurses *.o main.cpp -o run 
+	g++ -I./include *.o main.cpp -o run 
 
 board.o:
 	g++ -I./include -c src/*.cpp 
 
-clean:
-	rm *.o run 
+#clean:
+#	rm  run  
 
 

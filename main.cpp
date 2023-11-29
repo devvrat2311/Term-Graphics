@@ -1,13 +1,14 @@
 #include "grid.h"
 #include "game.h"
-#include<iostream>
+#include "input.h"
+#define clear() printf("\033[H\033[J")
 
 int main() {
     Game game;
-		int a = 10;
+		clear(); // implementation of screen clear using stackexchange's suggestion
 
-    game.display();
-
+    game.gameRun();
+		//system("clear");// using system method "clear" which i referred to from my previous attempts to make a game
     return 0;
 		
 }

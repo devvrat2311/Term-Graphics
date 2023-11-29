@@ -1,25 +1,9 @@
 #include "grid.h"
 #include<iostream>
-
-//Start of member functions of the Coordinate(Coord) class
-
-Coord::Coord(){
-    x = 0;
-    y = 0;
-}
-Coord::Coord(int x, int y){
-    this -> x = x;
-    this -> y = y;
-}
-
-//End of member functions of the Coordinate(Coord) class
-
 //Starting of Board member functions and constructor
-
 
 Board::Board(int x , int y )
 {
-    count = 0;
     Xaxis = x;
     Yaxis = y;
     Xlimit = Xaxis/2;
@@ -28,12 +12,6 @@ Board::Board(int x , int y )
 
 }
 
-
-
-
-//the robust method of rendering the board dynamically won't work, so 
-//we have to keep in mind the order of calling of the functions which 
-//assigns the characters of the board
 void Board::renderInitialSetup() {
     for(int i = 0; i < Yaxis; i++){
         for(int j = 0; j < Xaxis; j++){
@@ -41,6 +19,21 @@ void Board::renderInitialSetup() {
 						board[i][j] = ' ';
 						setAxis(i,j);
 						setBorders(i,j);
+        }
+    }
+}
+
+void Board::renderLineHorizontal(int x, int y, int len) {
+    int i = boardI(y);
+    for(int j = boardJ(x); j < boardJ(x + len); j++) {
+        board[i][j] = '-';
+    }
+}
+
+void Board::renderBox(int x, int y, int len) {
+    for(int i = boardI(y); i < boardI(y - len); i++) {
+        for(int j = boardJ(x); j < boardJ(x + len); j++) {
+            board[i][j] = '.';
         }
     }
 }

@@ -16,7 +16,6 @@ public:
 
 class Board {
 public:
-int count;  //dummy variable to track if functions are being called properly and debugging
 int Xaxis;  //Total Width of the board
 int Yaxis;  //Total Height of the board
 
@@ -25,7 +24,7 @@ int Ylimit; //The distance from origin of the board to end of board y-axis
 
 std::vector< std::vector<char>> board; //The two dimensional char vector[Yaxis][Xaxis] representing the board
 
-Board(int x = 97, int y = 33);    //Constructor Function for board[y][x] where y represents the height and x represents the width 
+Board(int = 97, int = 33);    //Constructor Function for board[y][x] where y represents the height and x represents the width 
 
 int boardX(int ); //Function which translates the j value in the vector(2d array) of board[i][j] to its x coord wrt board[0][0] which is the dead-centre of the board
 int boardY(int ); //Function which translates the i value in the vector(2d array) of board[i][j] to its y coord wrt board[0][0] which is the dead-centre of the board
@@ -33,9 +32,14 @@ int boardJ(int ); //Function which translates the x value in the vector(2d array
 int boardI(int ); //Function which translates the y value in the vector(2d array) of board[i][j] to its i coord wrt board[0][0] which is the dead-centre of the board
 
 void drawBoard(); //Simple function which just draws the board using a double for loop i.e. board[i][j]
+void renderLineHorizontal(int,int,int = 3); 
+void renderLineVertical(int,int,int = 3); 
+void renderBox(int,int,int=3);
 void renderInitialSetup(); //calls the functions required to set up the board (setBorders() and setOrigin())
+
 bool setBorders(int,int); //sets the borders of the board vector to the character '#'
 bool setAxis (int,int); //draws the axis of the board along with the origin with the char 'o'
+
 bool setCharAt(int,int,char,int,int);
 void setCharAt(int,int,char);
 

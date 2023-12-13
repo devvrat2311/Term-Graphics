@@ -1,48 +1,54 @@
 #include"game.h"
 #include "input.h"
+#include "gameObjs.h"
 #include<iostream>
 
 
-
-Game::Game() : gameBoard(87,31)
+Game::Game() : gameBoard(87,23)
 {
-		positionX = 0;
-		positionY = -3;
-		Running = true;
-    std::cout << "gameboard constructed!!. . . beep boop" << '\n';
-		log = "Welcome to Game: 󰜃";
+	positionX = 0;
+	positionY = -3;
+	
+	Running = true;
+	std::cout << "gameboard constructed!!. . . beep boop" << '\n';
+	log = "Welcome to Game: 󰜃";
 }
 
+//Game::display() -> is the set of instructions to 
+//render the game each time the keyboard is pressed
 void Game::display() {
-		gameBoard.renderInitialSetup();
-		gameBoard.setCharAt(positionX,positionY,'x');
-		gameBoard.renderBox(2,2);
-		gameBoard.drawBoard();
-		console();
+	Shape s1(gameBoard,-4,-5, 3, 6);
+	Shape *s = new Shape(gameBoard,5,5,2,2);
+	Snake s2(positionX,positionY,'u');
+	gameBoard.renderInitialSetup();
+	s1.draw();
+	s2.draw(gameBoard);
+	s->draw();
+//	gameBoard.setCharAt(positionX,positionY,'x');
+	gameBoard.drawBoard();
+	console();
 }
 
 //system("clear") being called here!
-void Game::gameRun() {
+void Game::main() {
 	while(Running) {
 		system("clear");
 		display();
-		std::cout << "\n Press q to quit game! \n";
+		std::cout << "\nPress q to quit game! \n";
 
 		char key = getch(); //getch() is the key to using system("clear") 
-												//effevtively, i think.
-
+								//effevtively, i think.
+			
 		handleMovement(key);
 		if(key != 'q'){
 			log = "Last key pressed was:";
 			log += key;
 		}
-
 		if(key == 'q') {
-			log="Quit\n";
 			Running = false;
 		}
 
-	}
+		}
 }
 
 void Game::console() {
@@ -64,16 +70,16 @@ void Game::console() {
 
 void Game::handleMovement(char key) {
 	switch(key) {
-		case 'k':
+		case 'w':
 			positionY++;
 			break;
-		case 'j':
+		case 's':
 			positionY--;
 			break;
-		case 'l':
+		case 'd':
 			positionX++;
 			break;
-		case 'h':
+		case 'a':
 			positionX--;
 			break;
 		default:

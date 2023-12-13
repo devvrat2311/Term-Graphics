@@ -2,25 +2,27 @@
 #define GAME_H
 
 #include "grid.h"
-#include<string>
-#include<map>
+#include "gameObjs.h"
+#include <string>
 
 class Game {
-private:
+protected:
 		bool Running;
-    Board gameBoard; //initializes the gameBoard used for the Game instance
+		Board gameBoard; //initializes the gameBoard used for the Game instance
 		std::string log;
-		int positionX;
+		//coordinates of the main character
+		int positionX; 
 		int positionY;
 
 public:
-    Game(); //constructor for the gameBoard  
-    void display(); //calls functions from the gameBoard to finally display the game
-		void gameRun();
-		void console();
-		void handleMovement(char key);
+	Game(); //constructor for the gameBoard  
+	void display(); //calls functions from the gameBoard to finally display the game
+	void main();
+	virtual void console(); //displays information about the key press, prompts etc
+	void handleMovement(char key);
+}; 
 
-};
+
 
 
 #endif

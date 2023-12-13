@@ -5,12 +5,11 @@
 
 int main() {
     Game game;
-		clear(); // implementation of screen clear using stackexchange's suggestion
-
-    game.gameRun();
+    game.main();
 		//system("clear");// using system method "clear" which i referred to from my previous attempts to make a game
     return 0;
 		
+
 }
 
 

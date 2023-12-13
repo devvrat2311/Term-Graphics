@@ -1,7 +1,6 @@
 #include "grid.h"
 #include<iostream>
 //Starting of Board member functions and constructor
-
 Board::Board(int x , int y )
 {
     Xaxis = x;
@@ -9,7 +8,6 @@ Board::Board(int x , int y )
     Xlimit = Xaxis/2;
     Ylimit = Yaxis/2;
     board.resize(Yaxis, std::vector<char>(Xaxis));
-
 }
 
 void Board::renderInitialSetup() {
@@ -19,21 +17,6 @@ void Board::renderInitialSetup() {
 						board[i][j] = ' ';
 						setAxis(i,j);
 						setBorders(i,j);
-        }
-    }
-}
-
-void Board::renderLineHorizontal(int x, int y, int len) {
-    int i = boardI(y);
-    for(int j = boardJ(x); j < boardJ(x + len); j++) {
-        board[i][j] = '-';
-    }
-}
-
-void Board::renderBox(int x, int y, int len) {
-    for(int i = boardI(y); i < boardI(y - len); i++) {
-        for(int j = boardJ(x); j < boardJ(x + len); j++) {
-            board[i][j] = '.';
         }
     }
 }
@@ -82,16 +65,12 @@ int Board::boardJ(int x){
 }
 
 void Board::drawBoard() {
-
-    
-    for(int i = 0; i < Yaxis; i++){
-        for(int j = 0; j < Xaxis; j++){
-            std::cout << board[i][j];
-        }
-        std::cout << '\n';
-    }
+	for(int i = 0; i < Yaxis; i++){
+  	for(int j = 0; j < Xaxis; j++){
+			std::cout << board[i][j];
+		}
+		std::cout << '\n';
+	}
 }
-
-
 //End of member functions of the Game Board(Board) class
 

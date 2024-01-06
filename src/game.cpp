@@ -4,7 +4,7 @@
 #include<iostream>
 
 
-Game::Game() : gameBoard(87,23)
+Game::Game() : gameBoard(49,23)
 {
 	positionX = 0;
 	positionY = -3;
@@ -12,20 +12,39 @@ Game::Game() : gameBoard(87,23)
 	Running = true;
 	std::cout << "gameboard constructed!!. . . beep boop" << '\n';
 	log = "Welcome to Game: 󰜃";
+
 }
 
-//Game::display() -> is the set of instructions to 
+//Game::logic() -> is the set of instructions to 
 //render the game each time the keyboard is pressed
-void Game::display() {
-	Shape s1(gameBoard,-4,-5, 3, 6);
-	Shape *s = new Shape(gameBoard,5,5,2,2);
-	Snake s2(positionX,positionY,'u');
-	gameBoard.renderInitialSetup();
-	s1.draw();
-	s2.draw(gameBoard);
-	s->draw();
-//	gameBoard.setCharAt(positionX,positionY,'x');
-	gameBoard.drawBoard();
+//Something that i hate about how logic runs again everytime 
+//that a new key is pressed, i mean yeah it is supposed to update the board 
+//but i want to find a solution to it 
+void Game::logic() {
+
+	
+
+	Board* g = &gameBoard; 
+	Board* h = new Board(23,23);
+
+	g->renderInitialSetup();
+	h->renderInitialSetup();
+
+	Shape s(g, 4, 4);
+	Shape s2(h,positionY,positionX);
+	Shape player(g, positionX, positionY, 2, 2);
+	s.draw();
+	objStack.push(s);
+	objStack.push(s2);
+	objStack.push(player);
+
+	std::cout << std::endl; 
+
+
+	player.draw();
+
+
+	g->drawBoard();
 	console();
 }
 
@@ -33,22 +52,14 @@ void Game::display() {
 void Game::main() {
 	while(Running) {
 		system("clear");
-		display();
+		logic();
 		std::cout << "\nPress q to quit game! \n";
 
 		char key = getch(); //getch() is the key to using system("clear") 
 								//effevtively, i think.
 			
 		handleMovement(key);
-		if(key != 'q'){
-			log = "Last key pressed was:";
-			log += key;
-		}
-		if(key == 'q') {
-			Running = false;
-		}
-
-		}
+	}
 }
 
 void Game::console() {
@@ -81,6 +92,9 @@ void Game::handleMovement(char key) {
 			break;
 		case 'a':
 			positionX--;
+			break;
+		case 'q':
+			Running=false;
 			break;
 		default:
 			break;

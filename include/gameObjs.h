@@ -14,10 +14,10 @@ public:
 
 class Shape : public gameObject {
 public:
-	Board& b;
+	Board* b;
 	int length;
 	int breadth;
-	Shape(Board&,int, int, int, int);
+	Shape(Board* ,int, int, int = 3, int = 3);
 	~Shape();
 	void draw(void);
 };

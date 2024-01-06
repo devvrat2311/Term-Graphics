@@ -14,7 +14,7 @@ void gameObject::draw(Board& board) {
 
 
 //Child object Shape
-Shape::Shape(Board& board,int x, int y, int l, int b) : gameObject(x,y) {
+Shape::Shape(Board* board,int x, int y, int l, int b) : gameObject(x,y) {
 	length = l;
 	breadth = b;
 	this->b = board;
@@ -25,9 +25,9 @@ Shape::~Shape() {
 }
 
 void Shape::draw() {
-	for(int i = b.boardI(y); i < b.boardI(y - breadth); i++ ) {
-		for( int j = b.boardJ(x); j < b.boardJ(x + length); j++) {
-			b.board[i][j] = '*';
+	for(int i = b->boardI(y); i < b->boardI(y - breadth); i++ ) {
+		for( int j = b->boardJ(x); j < b->boardJ(x + length); j++) {
+			b->board[i][j] = '*';
 		}	
 	}
 }

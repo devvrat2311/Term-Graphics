@@ -3,13 +3,11 @@
 #include "input.h"
 #define clear() printf("\033[H\033[J")
 
-int main() {
+int main(void) {
     Game game;
     game.main();
-		//system("clear");// using system method "clear" which i referred to from my previous attempts to make a game
-    return 0;
-		
 
+    return 0;
 }
 
 

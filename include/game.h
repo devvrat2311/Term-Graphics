@@ -4,6 +4,7 @@
 #include "grid.h"
 #include "gameObjs.h"
 #include <string>
+#include<stack>
 
 class Game {
 protected:
@@ -16,10 +17,12 @@ protected:
 
 public:
 	Game(); //constructor for the gameBoard  
-	void display(); //calls functions from the gameBoard to finally display the game
+	void logic(); //calls functions from the gameBoard to finally display the game
 	void main();
 	virtual void console(); //displays information about the key press, prompts etc
 	void handleMovement(char key);
+
+	std::stack<gameObject> objStack;	
 }; 
 
 

@@ -1,5 +1,5 @@
-#include "gameObjs.h"
-#include "grid.h"
+#include "../include/gameObjs.h"
+#include "../include/grid.h"
 #include <iostream>
 //parent class gameObject
 gameObject::gameObject(int x, int y) {

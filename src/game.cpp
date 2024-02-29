@@ -1,6 +1,6 @@
-#include"game.h"
-#include "input.h"
-#include "gameObjs.h"
+#include"../include/game.h"
+#include "../include/input.h"
+#include "../include/gameObjs.h"
 #include<iostream>
 
 

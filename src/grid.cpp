@@ -1,4 +1,4 @@
-#include "grid.h"
+#include "../include/grid.h"
 #include<iostream>
 //Starting of Board member functions and constructor
 Board::Board(int x , int y )

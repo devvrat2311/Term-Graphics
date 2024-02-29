@@ -1,4 +1,4 @@
-#include "input.h"
+#include "../include/input.h"
 
 int getch(void) {
 	struct termios oldattr, newattr;

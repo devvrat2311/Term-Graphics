@@ -1,6 +1,6 @@
-#include "grid.h"
-#include "game.h"
-#include "input.h"
+#include "./include/grid.h"
+#include "./include/game.h"
+#include "./include/input.h"
 #define clear() printf("\033[H\033[J")
 
 int main(void) {
